@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+
+{% block head_title %}Welcome to {{ block.super }}{% endblock %}
+
+<style>
+{% block style %}
+
+
+.jumbotron {
+	position: relative;
+	background:#000 url("http://leolab.pro/images/headers/p192lm3o8gh46172b646182p1fnff.jpg") center;
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+    overflow: hidden;
+}
+
+
+{% endblock %}
+</style>
+
+{% block jumbotron %}
+  {% if not request.user.is_authenticated %}
+
+ <div class="jumbotron">
+	 <div class="container">
+	 <img source='http://dmir.ru/images/sdayutsya-v-arendu-stomatologicheskie-kabinety-24005494.jpg'>
+        <h1>Добро пожаловать в Cloudent!</h1>
+        <p>Пример текста, рассказывающий о том, какой прекрасный это сервис и сколько открывает он возможностей.</p>
+        <p>Чтобы оценить все возможности сервиса, пройдите несложную регистрацию</p>
+        <p>
+          <a class="btn btn-lg btn-primary" href="{% url 'registration_register' %}" role="button">Пройти регистрацию &raquo;</a>
+        </p>
+      </div>
+
+</div>
+
+ {% endif %}
+{% endblock %}
+
+{% block content %}
+ {% if request.user.is_authenticated %}
+<h1>You are logged in!</h1>
+<div class="container">
+<img source="http://dmir.ru/images/sdayutsya-v-arendu-stomatologicheskie-kabinety-24005494.jpg">
+</div>
+{% endif %}
+{% endblock %}
