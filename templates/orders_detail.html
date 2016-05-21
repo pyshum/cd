@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+
+{% block head_title %}
+{{ title }} | {{ block.super }}
+{% endblock head_title %}
+
+
+
+{% block content %}
+<div class='col-sm-6 col-sm-offset-3'>
+<h1>{{ title }} <small>{{ instance.publish }}</small></h1>
+	<img src='{{ image }}' class='img-responsive' />
+
+{% if instance.user.get_full_name %}
+<p>Author: {{ instance.user.get_full_name }}</p>
+{% endif %}
+
+</div>
+
+{% endblock content %}

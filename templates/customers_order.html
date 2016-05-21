@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block head_title %}My profile{% endblock %}
+
+
+{% block content %}
+
+<div class='col-sm-6 col-sm-offset-3'>
+<h1>Заполните все поля заказа:</h1>
+<form method='POST' action='' enctype='multipart/form-data'>{% csrf_token %}
+{{ form.as_p }}
+<input type='submit' class='btn-default' value='Создать заказ' />
+</form>
+</div>
+ 
+{% endblock content %}
