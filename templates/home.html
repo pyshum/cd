@@ -10,7 +10,11 @@
 
 .jumbotron {
 	position: relative;
+<<<<<<< HEAD
 	background:#000 url("/static/img/p192lm3o8gh46172b646182p1fnff.jpg") center;
+=======
+	background:#000 url("http://leolab.pro/images/headers/p192lm3o8gh46172b646182p1fnff.jpg") center;
+>>>>>>> 9ea45164b2351436dd4f9e000e732492dee96185
 	width: 100%;
 	height: 100%;
 	background-size: cover;
@@ -26,7 +30,12 @@
 
  <div class="jumbotron">
 	 <div class="container">
+<<<<<<< HEAD
 	    <h1>Добро пожаловать в Cloudent!</h1>
+=======
+	 <img source='http://dmir.ru/images/sdayutsya-v-arendu-stomatologicheskie-kabinety-24005494.jpg'>
+        <h1>Добро пожаловать в Cloudent!</h1>
+>>>>>>> 9ea45164b2351436dd4f9e000e732492dee96185
         <p>Пример текста, рассказывающий о том, какой прекрасный это сервис и сколько открывает он возможностей.</p>
         <p>Чтобы оценить все возможности сервиса, пройдите несложную регистрацию</p>
         <p>
@@ -42,5 +51,11 @@
 {% block content %}
  {% if request.user.is_authenticated %}
 <h1>You are logged in!</h1>
+<<<<<<< HEAD
+=======
+<div class="container">
+<img source="http://dmir.ru/images/sdayutsya-v-arendu-stomatologicheskie-kabinety-24005494.jpg">
+</div>
+>>>>>>> 9ea45164b2351436dd4f9e000e732492dee96185
 {% endif %}
 {% endblock %}

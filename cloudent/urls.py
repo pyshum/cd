@@ -7,10 +7,13 @@ urlpatterns = [
     # Examples:
     url(r'^$', 'basecloud.views.home', name='home'),
     url(r'^profile/$', 'basecloud.views.clients_profile', name='clients_profile'),
+<<<<<<< HEAD
     url(r'^create_order/$', 'basecloud.views.create_order', name='new_order'),
     url(r'^orders/$', 'basecloud.views.orders_list', name='orders'),
     url(r'^orders_detail/$', 'basecloud.views.orders_detail', name='orders_detail'),
 
+=======
+>>>>>>> 9ea45164b2351436dd4f9e000e732492dee96185
 
     # url(r'^blog/', include('blog.urls')),
 

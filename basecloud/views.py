@@ -1,4 +1,5 @@
 from django.conf import settings
+<<<<<<< HEAD
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.mail import send_mail
@@ -9,6 +10,13 @@ from django.utils import timezone
 
 from .forms import *
 from .models import *
+=======
+from django.core.mail import send_mail
+from django.shortcuts import render
+
+from .forms import SignUpForm
+from .models import SignUp
+>>>>>>> 9ea45164b2351436dd4f9e000e732492dee96185
 
 # Create your views here.
 def home(request):
@@ -18,7 +26,11 @@ def home(request):
 
 def clients_profile(request):
 	if request.user.is_authenticated():
+<<<<<<< HEAD
 		title = 'My profile' #'You are logged in as %s' %(request.user)
+=======
+		title = 'You are logged in as %s' %(request.user)
+>>>>>>> 9ea45164b2351436dd4f9e000e732492dee96185
 		photo = '/static/img/All_OSs.jpg'
 		context = {
 			"title": title,
@@ -26,6 +38,7 @@ def clients_profile(request):
 		}
 
 
+<<<<<<< HEAD
 	return render(request, "profile_client.html", context)
 
 def create_order(request):
@@ -93,3 +106,6 @@ def orders_list(request):
          # "today": today,
         }
     return render(request, "orders_list.html", context)
+=======
+	return render(request, "profile_client.html", context)
+>>>>>>> 9ea45164b2351436dd4f9e000e732492dee96185
