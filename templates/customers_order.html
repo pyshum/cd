@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load crispy_forms_tags %}
 
-{% block head_title %}My profile{% endblock %}
+{% block head_title %}My order{% endblock %}
 
 
 {% block content %}
@@ -9,8 +10,10 @@
 <div class='col-sm-6 col-sm-offset-3'>
 <h1>Заполните все поля заказа:</h1>
 <form method='POST' action='' enctype='multipart/form-data'>{% csrf_token %}
-{{ form.as_p }}
-<input type='submit' class='btn-default' value='Создать заказ' />
+{{ form|crispy }}
+<input type='submit' class='btn btn-block btn-primary' value='Сохранить заказ' />
+<br/>
+<h5>*Поля, отмеченные звезочкой, обязательны для заполнения<h5>
 </form>
 </div>
  

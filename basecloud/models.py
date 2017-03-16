@@ -5,12 +5,17 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class SignUp(models.Model):
-	email = models.EmailField()
-	full_name = models.CharField(max_length=120, blank=True, null=True)
+	email = models.EmailField(unique=True)
+	full_name = models.CharField(max_length=120, blank=True, null=True, unique=True)
 	timestamp = models.DateTimeField(auto_now_add=True, auto_now=False, null=True)
 	# updated = models.DateTimeField(auto_now_add=False, auto_now=True)
-	# stl_file = models.FileField(blank=True, null=True)
-
+	image = models.ImageField(
+			null=True, 
+			blank=True,
+			width_field="width_field",
+			height_field="height_field")
+	height_field = models.IntegerField(default=0)
+	width_field = models.IntegerField(default=0)
 	def __unicode__(self):
 		return self.email
 
@@ -34,3 +39,12 @@ class CustomersOrder(models.Model):
 			height_field="height_field")
 	height_field = models.IntegerField(default=0)
 	width_field = models.IntegerField(default=0)
+
+class CustomersProfile(models.Model):
+	user = models.OneToOneField(SignUp)
+
+	website = models.URLField(blank=True)
+	picture = models.ImageField(upload_to='profile_images', blank=True)
+
+	def __unicode__(self):
+		return self.user	

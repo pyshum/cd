@@ -2,7 +2,7 @@
 
 
 {% block head_title %}
-{{ title }} | {{ block.super }}
+Заказ № {{ customersorder_id }} | {{ block.super }}
 {% endblock head_title %}
 
 
@@ -10,11 +10,15 @@
 {% block content %}
 <div class='col-sm-6 col-sm-offset-3'>
 <h1>{{ title }} <small>{{ instance.publish }}</small></h1>
-	<img src='{{ image }}' class='img-responsive' />
+	<img src="{{ instance.image.url }}" class='img-responsive' />
 
-{% if instance.user.get_full_name %}
-<p>Author: {{ instance.user.get_full_name }}</p>
-{% endif %}
+
+<p>Author: {{ author }}</p>
+
+<p>Заказ №: {{ customersorder_id }}</p>
+
+<p><a href=' /order_edit/{{ customersorder_id }}/ ' class="btn btn-primary" role="button">Редактировать заказ</a></p>
+
 
 </div>
 

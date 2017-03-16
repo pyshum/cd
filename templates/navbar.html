@@ -1,6 +1,6 @@
  {% load staticfiles %}
  <!-- Static navbar -->
-    <nav class="navbar navbar-default navbar-static-top">
+    <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -18,11 +18,11 @@
             <li><a href="#contact">Contact</a></li>
           {% endif %}
           {% if request.user.is_authenticated %}
-            <li class="active"><a href="{% url 'clients_profile' %}">Профиль</a></li> 
-            <li class="active"><a href="{% url 'new_order' %}">Создать</a></li>
-            <li class="active"><a href="{% url 'orders' %}">Новые</a></li>
-            <li class="active"><a href="#entrust">Поручил</a></li>
-            <li class="active"><a href="#perform">Выполняю</a></li>
+            <li class="btn waves-effect waves-light light-green" type="submit"><a href="{% url 'clients_profile' %}">Профиль</a></li> 
+            <li class="btn waves-effect waves-light red" type="submit"><a href="{% url 'new_order' %}">Создать</a></li>
+            <li class="btn waves-effect waves-light orange" type="submit"><a href="{% url 'orders' %}">Новые</a></li>
+            <li class="btn waves-effect waves-light light-blue" type="submit"><a href="#entrust">Поручил</a></li>
+            <li class="btn waves-effect waves-light yellow" type="submit"><a href="#perform">Выполняю</a></li>
 
 
             <li class="dropdown">
@@ -42,11 +42,18 @@
           
 
           <ul class="nav navbar-nav navbar-right">
-          {% if request.user.is_authenticated %}
-            <li><a>{{ user }}</a></li>
-            <li><a href="{% url 'auth_logout' %}">Logout</a></li>
-            {% else %}
-            <li><a href="{% url 'registration_register' %}">Register</a></li>
+            {% if request.user.is_authenticated %}
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ user }}<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+              <li><a href="#">Редактировать профиль</a></li>
+              </ul>
+              </li>
+
+              <li><a href="{% url 'auth_logout' %}">Logout</a></li>
+            {% else %}  
+              <li><a href="{% url 'register' %}">Register</a></li>
             {% endif %}
           </ul>
 

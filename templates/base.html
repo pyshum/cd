@@ -28,13 +28,30 @@
 			{% block jumbotron %}
 
 			{% endblock %}
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+
+      
 
 <div class="container">
 			
+{% if request.user.is_authenticated %}
+
 			{% block content %}
 
 			{% endblock %}
-   
+      
+{% endif %}
+
+
+
+{% block register %}
+
+{% endblock %}
 
 
 
@@ -44,9 +61,16 @@
 
    
 <!--==============================footer=================================-->
-<footer>
-    <p>© 2016 Cloudent<br>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<footer class="footer">
+      <div class="container">
+        <p class="text-muted">© 2016 Cloudent<br>
         Сайт создан веб-студией  <a target="_blank" href="http://yourprofit.me/" class="link">Cloudent</a></p>
+ </div>
 </footer>
   </body>
 </html>
