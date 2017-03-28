@@ -18,12 +18,13 @@ def home(request):
 
 def clients_profile(request):
 	if request.user.is_authenticated():
-		title = CustomersProfile.user #'You are logged in as %s' %(request.user)
+		instance = get_object_or_404(CustomersProfile.objects, user_id=request.user.id) #'You are logged in as %s' %(request.user)
         # pro_photo = CustomersProfile.
 		# instance = SignUp.objects
-        #photo =  '/static/img/All_OSs.jpg'
+        # photo =  user.picture
         context = {
-        	"title": title,
+        	"photo": instance.picture,
+            "profile_id": request.user.id,
         	# "photo": pro_photo,
         }
 

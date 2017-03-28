@@ -1,6 +1,8 @@
 # -*- coding:utf-8 -*-
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # Create your models here.
 
@@ -41,10 +43,22 @@ class CustomersOrder(models.Model):
 	width_field = models.IntegerField(default=0)
 
 class CustomersProfile(models.Model):
-	user = models.OneToOneField(SignUp)
+	user = models.OneToOneField(User, on_delete=models.CASCADE)
 
 	website = models.URLField(blank=True)
 	picture = models.ImageField(upload_to='profile_images', blank=True)
 
 	def __unicode__(self):
-		return self.user	
+		return unicode(self.user)
+
+
+
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+	if created:
+		CustomersProfile.objects.create(user=instance)
+
+
+# @receiver(post_save, sender=User)
+# def save_user_profile(sender, instance, **kwargs):
+# 	CustomersProfile.user.save()

@@ -5,9 +5,13 @@
 
 
 {% block content %}
-<p>{{ title }}</p>
+<p>Hi, {{ user }}! id: {{ profile_id }}</p>
 <div class='col-sm-2'>
-	<img src='{{ photo.image.url }}' class='img-responsive' />
+{% if photo %}
+	<img src='{{ photo.url }}' class='img-responsive' />
+{% else %}
+	<img src='/media/profile_images/blank-profile-picture-973460_960_720.png' class='img-responsive' />
+{% endif %}
 </div>
  
 {% endblock %}
