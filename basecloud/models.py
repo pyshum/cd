@@ -33,6 +33,8 @@ class CustomersOrder(models.Model):
 	title = models.CharField(max_length=100, verbose_name='Название')
 	create_date = models.TextField(verbose_name='Описание')
 	user = models.ForeignKey(User)
+	# assigned_to = models.ForeignKey(CustomersProfile, null=True, blank=True)
+	# picked_up = models.ForeignKey(CustomersProfile, null=True, blank=True)
 	rate = models.IntegerField(verbose_name='Рейтинг', default=0)
 	image = models.ImageField(
 			null=True, 
@@ -53,10 +55,12 @@ class CustomersProfile(models.Model):
 
 
 
-@receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-	if created:
-		CustomersProfile.objects.create(user=instance)
+
+
+# @receiver(post_save, sender=User)
+# def create_user_profile(sender, instance, created, **kwargs):
+# 	if created:
+# 		CustomersProfile.objects.create(user=instance)
 
 
 # @receiver(post_save, sender=User)

@@ -7,8 +7,8 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 
-from .forms import *
-from .models import *
+from .forms import CreateOrderForm, CustomersProfileForm, SignUpForm, UserForm
+from .models import CustomersProfile, CustomersOrder
 
 # Create your views here.
 def home(request):
@@ -19,13 +19,10 @@ def home(request):
 def clients_profile(request):
 	if request.user.is_authenticated():
 		instance = get_object_or_404(CustomersProfile.objects, user_id=request.user.id) #'You are logged in as %s' %(request.user)
-        # pro_photo = CustomersProfile.
-		# instance = SignUp.objects
-        # photo =  user.picture
+        
         context = {
         	"photo": instance.picture,
             "profile_id": request.user.id,
-        	# "photo": pro_photo,
         }
 
 
@@ -124,42 +121,46 @@ def order_edit(request, customersorder_id=None):
 
 def register(request):
     
-    # registered = False
+    registered = False
 
-    # if request.method == 'POST':
-    # user_form = UserForm(data=request.POST)
-    profile_form = CustomersProfileForm(data=request.POST)
+    if request.method == 'POST':
+        user_form = UserForm(data=request.POST)
+        profile_form = CustomersProfileForm(data=request.POST)
 
-    # if user_form.is_valid() and profile_form.is_valid():
+        if user_form.is_valid() and profile_form.is_valid():
 
-    # user = user_form.save()
+            user = user_form.save()
 
-    # user.set_password(user.password)
-    # user.save()
-
-
-    # profile = profile_form.save(commit=False)
-    # profile.user = user
+            user.set_password(user.password)
+            user.save()
 
 
-    # if 'picture' in request.FILES:
-    #     profile.picture = request.FILES['picture']
-
-    # profile.save()
-
-    # registered = True
-
-    # else:
-    #     print user_form.errors, profile_form.errors
-
-    # else:
-    #     user_form = UserForm()
-    #     profile_form = UserProfileForm()
+            profile = profile_form.save(commit=False)
+            profile.user = user
 
 
-    context = {
+            if 'picture' in request.FILES:
+                profile.picture = request.FILES['picture']
+
+            profile.save()
+
+            registered = True
+
+            messages.success(request, "Profile Saved")
+            return HttpResponseRedirect('/')
+
+        else:
+            print user_form.errors, profile_form.errors
+
+    else:
+        user_form = UserForm()
+        profile_form = UserProfileForm()
+
+
+    # context = {
          
-        'profile_form': profile_form, 
-        }
+    #     'profile_form': profile_form, 
+    #     }
 
-    return render(request, './registration/registration_form.html', context)
+    return render(request, './registration/registration_form.html') #, context)
+    
